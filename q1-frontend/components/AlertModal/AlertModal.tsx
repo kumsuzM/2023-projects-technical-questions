@@ -10,7 +10,7 @@ export default function AlertModal({ useContents, contents }: AlertModalProps) {
   function onSubmitEvent(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    const newEventAlert = (e.target as any)[0].value;
+    const newEventAlert = (e.target as any).elements[0].value;
     const newEvent = {
       alert: newEventAlert,
       status: "",
