@@ -25,16 +25,15 @@ app.post("/entity", (req, res) => {
   entities.forEach((entity: spaceEntity) => {
     spaceDatabase.push(entity);
   });
-  console.log(spaceDatabase);
   res.json({});
 });
 
 // lasooable returns all the space animals a space cowboy can lasso given their name
 app.get("/lassoable", (req, res) => {
   const { cowboy_name } = req.body;
-  console.log(cowboy_name);
   let lassoLength: number = 0;
   let cowboyLocation: location;
+
   // Loops through database to find lassoLength and
   // location for requested cowboy
   spaceDatabase.forEach((entity: spaceEntity) => {
@@ -46,7 +45,9 @@ app.get("/lassoable", (req, res) => {
       cowboyLocation = entity.location;
     }
   });
+
   const space_animals = [] as spaceEntity[];
+
   // Loop through space animals and add the appropriate ones
   // to array which will be sent back
   spaceDatabase.forEach((entity: spaceEntity) => {
@@ -57,9 +58,12 @@ app.get("/lassoable", (req, res) => {
         Math.pow(cowboyLocation.y - animalLocation.y, 2);
 
       const distance = Math.sqrt(equation);
+
+      // Add entity to result array if it lies in the cowboys reach
       if (distance <= lassoLength) space_animals.push(entity);
     }
   });
+
   res.json({ space_animals });
 });
 
