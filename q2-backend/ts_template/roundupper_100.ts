@@ -31,7 +31,7 @@ app.post("/entity", (req, res) => {
 // lasooable returns all the space animals a space cowboy can lasso given their name
 app.get("/lassoable", (req, res) => {
   const { cowboy_name } = req.body;
-  let lassoLength: number = 0;
+  let lassoLength: number;
   let cowboyLocation: location;
 
   // Loops through database to find lassoLength and
